@@ -11,7 +11,7 @@ Python3.13 должен быть уже установлен.
 pip install -r requirements.txt
 ```
 
-Настройки программы хранятся в переменнной окружения DJANGO_SETTINGS_MODULE (файл settings.py).
+Настройки программы хранятся в переменнной окружения **DJANGO_SETTINGS_MODULE** (файл `settings.py`).
 
 Для доступа к базе **Passcard** нужно добавить настройки в файл `settings.py`:
 Укажите имя хоста (**HOST**), пароль пользователя (**PASSWORD**) и секретный ключ доступа к базе (**SECRET_KEY**).
