@@ -1,12 +1,13 @@
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
-django.setup()
 
-from datacenter.models import Passcard  
+def main():
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+    django.setup()
 
-if __name__ == '__main__':
+    from datacenter.models import Passcard
+
     objects = Passcard.objects.all()
     first_object = objects[0]
     print(f"""
@@ -16,5 +17,9 @@ if __name__ == '__main__':
         is_active: {first_object.is_active}
         """)
     active_passcard = Passcard.objects.filter(is_active=True)
-    print('Количество пропусков:', Passcard.objects.count())  
-    print("Активных пропусков",len(active_passcard))
+    print("Количество пропусков:", Passcard.objects.count())
+    print("Активных пропусков", len(active_passcard))
+
+
+if __name__ == "__main__":
+    main()
