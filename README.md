@@ -13,24 +13,38 @@ pip install -r requirements.txt
 
 Настройки программы хранятся в переменнной окружения **DJANGO_SETTINGS_MODULE** (файл `settings.py`).
 
-Для доступа к базе **Passcard** нужно добавить настройки в файл `settings.py`:
-Укажите имя хоста (**HOST**), номер порта (**PORT**), имя базы (**NAME**), имя пользователя (**USERNAME**), пароль пользователя (**PASSWORD**) и секретный ключ доступа к базе (**SECRET_KEY**).
+Cами переменные окружения с данными хранятся в текстовом файле ***.env***.
+
+Формат файла такой:
+```
+SECRET_KEY = #здесь секретный ключ доступа к базе
+DB_PASSWORD = #здесь пароль пользователя
+DB_HOST = #здесь имя хоста
+DB_PORT = #здесь номер порта
+DB_NAME = #здесь название базы данных
+DB_USERNAME = #здесь имя пользователя
+```
+Код программы с импортом настроек из ***.env*** выглядит так:
 ```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('PORT'),
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USERNAME'),
-        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
     }
 }
 ```
-В базе данных содержится информация об имени пользователя (**owner_name**), пароле пользователя (**passcode**), дате регистрации пользователя (**created_at**) и активности пропуска пользователя (**is_active**).
+В базе данных ***Passcard*** содержится информация об имени пользователя (**owner_name**), пароле пользователя (**passcode**), дате регистрации пользователя (**created_at**) и активности пропуска пользователя (**is_active**).
 
 При запуске программа выдает информацию об одном из пользователей, а также общее количество пропусков и количество активных пропусков.
 
+***Запуск программы:***
+```
+python3.13 main.py
+```
 ### Результат запуска программы
 ```
         owner_name: Veronica Byrd,
